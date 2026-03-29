@@ -2,7 +2,7 @@ package com.game;
 
 import javax.swing.JFrame;
 
-import com.game.Input.KeyHandler;
+
 
 public class Main {
     public static void main(String[] args) {
