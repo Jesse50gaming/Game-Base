@@ -44,7 +44,7 @@ public class Game extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         
         player.paint(g2);
-        
+        //
         
     }
 
