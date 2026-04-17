@@ -19,8 +19,8 @@ public class Player {
     }
 
     public void update() {
-        playerInput();
-
+        playerKeyInput();
+        playerMouseInput();
     }
 
     public void paint(Graphics2D g2) {
@@ -28,7 +28,9 @@ public class Player {
         g2.drawOval((int) x, (int) y, (int) PlayerConstants.playerWidth, (int) PlayerConstants.playerHeight);
     }
 
-    private void playerInput() {
+    private void playerKeyInput() {
+        
+
         if (game.getKeyHandler().isPressed(KeyEvent.VK_W)) {
             y -= PlayerConstants.playerSpeed;
         }
@@ -41,6 +43,11 @@ public class Player {
         if (game.getKeyHandler().isPressed(KeyEvent.VK_D)) {
             x += PlayerConstants.playerSpeed;
         }
+    }
+
+    private void playerMouseInput() {
+        if (game.getMouseHandler().getCurrentMouseEvent() == null) return;
+
     }
 
 }

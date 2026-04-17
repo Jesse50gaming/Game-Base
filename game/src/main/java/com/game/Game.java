@@ -9,23 +9,27 @@ import javax.swing.JPanel;
 
 import com.game.Constants.ScreenConstants;
 import com.game.Input.KeyHandler;
+import com.game.Input.MouseHandler;
 import com.game.Player.Player;
 
 public class Game extends JPanel implements Runnable{
 
     private Thread gameThread;
 
+    private MouseHandler mouseHandler;
     private KeyHandler keyHandler;
     private Player player;
 
     public Game() {
         keyHandler = new KeyHandler();
+        mouseHandler = new MouseHandler(this);
         this.setPreferredSize(new Dimension((int) ScreenConstants.screenWidth, (int) ScreenConstants.screenHeight));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
         addKeyListener(keyHandler);
+        addMouseListener(mouseHandler);
         init();
     }
 
@@ -35,6 +39,7 @@ public class Game extends JPanel implements Runnable{
 
     private void update() {
         keyHandler.update();
+        mouseHandler.updateMouse();
         player.update();
     }
 
@@ -89,6 +94,10 @@ public class Game extends JPanel implements Runnable{
 
     public KeyHandler getKeyHandler() {
         return keyHandler;
+    }
+
+    public MouseHandler getMouseHandler() {
+        return mouseHandler;
     }
 
 }
