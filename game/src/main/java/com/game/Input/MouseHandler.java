@@ -65,6 +65,13 @@ public class MouseHandler implements MouseListener {
         currentMouseEvent.translatePoint(mousePoint.x - windowLocation.x - currentMouseEvent.getX(), mousePoint.y - windowLocation.y - currentMouseEvent.getY());
     }
 
+    public void useMouseClick() {
+        //sets the current mouse event to be the same as it is but without a click
+        currentMouseEvent = new MouseEvent(currentMouseEvent.getComponent(), currentMouseEvent.getID(),
+         currentMouseEvent.getWhen(), currentMouseEvent.getModifiersEx(), currentMouseEvent.getX(),
+          currentMouseEvent.getY(), 0, currentMouseEvent.isPopupTrigger(), MouseEvent.NOBUTTON);
+    }
+
     
     
 }
