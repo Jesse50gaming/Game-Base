@@ -21,6 +21,7 @@ public class Game extends JPanel implements Runnable{
     private Player player;
 
     public Game() {
+        //initializes the game panel and input handlers
         keyHandler = new KeyHandler();
         mouseHandler = new MouseHandler(this);
         this.setPreferredSize(new Dimension((int) ScreenConstants.screenWidth, (int) ScreenConstants.screenHeight));
@@ -37,12 +38,19 @@ public class Game extends JPanel implements Runnable{
         player = new Player(this);
     }
 
+    /**
+     * runs every frame
+     */
     private void update() {
         keyHandler.update();
         mouseHandler.updateMouse();
         player.update();
     }
 
+
+    /**
+     * runs every frame
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -55,15 +63,15 @@ public class Game extends JPanel implements Runnable{
 
     @Override
     public void run() {
-        double drawInterval = 1000000000/ScreenConstants.FPS;
+        double drawInterval = 1000000000/ScreenConstants.FPS; // how many nanoseconds are there in a frame
         double nextDrawTime = System.nanoTime() + drawInterval;
 
-        while(gameThread != null) {
+        while(gameThread != null) { // while the game is running
 
             
-             update();
+             update(); // updates the game 
             
-             repaint();
+             repaint(); // draws things onto the screen
              
              try {
                 
@@ -74,7 +82,7 @@ public class Game extends JPanel implements Runnable{
                     remainingTime = 0;
                 }
 
-                Thread.sleep((long) remainingTime);
+                Thread.sleep((long) remainingTime); // sleeps the thread until the next frame should be drawn
                 
                 nextDrawTime += drawInterval;
                 
@@ -86,12 +94,15 @@ public class Game extends JPanel implements Runnable{
         }
     }
 
-
-    public void startGameThread() {
+    /**
+     * creates the gamethread and starts it, which starts the game loop
+     */
+    public void startGameThread() { 
         gameThread = new Thread(this);
         gameThread.start();
     }
 
+    
     public KeyHandler getKeyHandler() {
         return keyHandler;
     }

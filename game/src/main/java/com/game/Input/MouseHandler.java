@@ -15,6 +15,7 @@ public class MouseHandler implements MouseListener {
         this.game = game;
     }
 
+    //sets the current mouse event to the most recent mouse event
     @Override
     public void mouseClicked(MouseEvent e) {
         currentMouseEvent = e;
@@ -40,6 +41,9 @@ public class MouseHandler implements MouseListener {
         currentMouseEvent = e;
     }
 
+    /**
+     * @return the most recent mouse event, or null if there is no mouse event
+     */
     public MouseEvent getCurrentMouseEvent() {
         if (currentMouseEvent == null) {
             System.out.println("No mouse event detected.");
@@ -48,13 +52,16 @@ public class MouseHandler implements MouseListener {
         return currentMouseEvent;
     }
 
-
+    /**
+     * runs every frame
+     */
     public void updateMouse() {
         if(!game.isShowing() || currentMouseEvent == null) return;
 
-        Point mousePoint = MouseInfo.getPointerInfo().getLocation();
-        Point windowLocation = game.getLocationOnScreen();
+        Point mousePoint = MouseInfo.getPointerInfo().getLocation(); // the point of the mouse on the screen
+        Point windowLocation = game.getLocationOnScreen(); // where the window is on the screen
 
+        // -currentMouseEvent.getX() to set to 0, then takes the difference between the mouse and the window to get the position of the mouse relative to the window
         currentMouseEvent.translatePoint(mousePoint.x - windowLocation.x - currentMouseEvent.getX(), mousePoint.y - windowLocation.y - currentMouseEvent.getY());
     }
 

@@ -8,7 +8,7 @@ public final class PlayerConstants {
     public static final double playerHeight = basePlayerHeight * ScreenConstants.scale;
     public static final double playerWidth = basePlayerWidth * ScreenConstants.scale;
 
-    private static final double basePlayerSpeed = 2;
-    public static final double playerSpeed = basePlayerSpeed * ScreenConstants.scale;
+    private static final double basePlayerSpeed = 100;
+    public static final double playerSpeed = basePlayerSpeed * ScreenConstants.scale / ScreenConstants.FPS;
     
 }
